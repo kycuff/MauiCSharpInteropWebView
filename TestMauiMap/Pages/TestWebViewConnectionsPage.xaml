@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TestMauiMap.Pages.TestWebViewConnectionsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:hwv="clr-namespace:HybridWebView;assembly=HybridWebView"
+    Title="TestWebViewConnectionsPage">
+
+    <Grid RowDefinitions="70,*">
+        <Button
+            Grid.Row="0"
+            Margin="10,10"
+            Clicked="Button_Clicked"
+            HeightRequest="50"
+            Text="Call Javascript" />
+        <hwv:HybridWebView
+            x:Name="myHybridWebView"
+            Grid.Row="1"
+            HybridAssetRoot=""
+            MainFile="index.html"
+            VerticalOptions="FillAndExpand" />
+    </Grid>
+</ContentPage>

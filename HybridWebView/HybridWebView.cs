@@ -90,13 +90,14 @@ namespace HybridWebView
 
         private void InvokeDotNetMethod(JSInvokeMethodData invokeData)
         {
-            if (JSInvokeTarget is null)
-            {
-                throw new NotImplementedException($"The {nameof(JSInvokeTarget)} property must have a value in order to invoke a .NET method from JavaScript.");
-            }
+            object? containingClass = null;
+            MethodInfo? invokeMethod = null;
 
-            object containingClass = JSInvokeTarget;
-            MethodInfo invokeMethod = JSInvokeTarget.GetType().GetMethod(invokeData.MethodName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.InvokeMethod);
+            if (JSInvokeTarget is not null)
+            {
+                containingClass = JSInvokeTarget;
+                invokeMethod = JSInvokeTarget.GetType().GetMethod(invokeData.MethodName, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.InvokeMethod);
+            }
                 
             if(invokeMethod is null)
             {

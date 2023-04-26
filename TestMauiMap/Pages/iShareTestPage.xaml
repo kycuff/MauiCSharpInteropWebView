@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TestMauiMap.Pages.iShareTestPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:hwv="clr-namespace:HybridWebView;assembly=HybridWebView"
+    xmlns:buttons="clr-namespace:TestMauiMap.Controls.Buttons"
+    xmlns:lottie="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
+    Title="iShareTestPage">
+
+    <Grid
+        Margin="0"
+        Padding="0"
+        RowDefinitions="auto,auto,*"
+        RowSpacing="0">
+
+        <!--  IMPORTANT: Need to wrap ishare in stacklayout becuase without IsInAccessibleTree=False on the webview screenreader will enter ishare. Stacklayout allows us to add some accessible text  -->
+        <StackLayout
+            x:Name="MapContainer"
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            AutomationProperties.IsInAccessibleTree="True"
+            AutomationProperties.Name="{Binding AccessibleMapName, Source={RelativeSource AncestorType={x:Type ContentView}}}">
+            <hwv:HybridWebView
+                x:Name="IshareView"
+                AutomationProperties.IsInAccessibleTree="False"
+                BackgroundColor="Purple"
+                HybridAssetRoot=""
+                MainFile="ishare.html" />
+        </StackLayout>
+
+        <stateButton:StateButton x:Name="HelpBtn"
+								 Grid.Row="0"
+								 Margin="5,6,5,0"
+								 AutomationProperties.IsInAccessibleTree="True"
+								 AutomationProperties.Name="Help"
+								 HorizontalOptions="Start"
+								 IsVisible="{Binding ShowMapHelpButton, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+								 VerticalOptions="Start">
+        <stateButton:StateButton.Content>
+				<Frame Padding="13,10,14,10"
+					   BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+					   CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
+					   HasShadow="False"
+					   HorizontalOptions="Start"
+					   VerticalOptions="Start">
+					<Frame.Triggers>
+						<DataTrigger Binding="{Binding Source={RelativeSource AncestorType={x:Type stateButton:StateButton}}, Path=State}"
+									 TargetType="Frame"
+									 Value="Pressed">
+							<Setter Property="Background">
+								<SolidColorBrush Color="{DynamicResource BackgroundGradientStartColor}" />
+							</Setter>
+						</DataTrigger>
+					</Frame.Triggers>
+
+					<StackLayout HorizontalOptions="Start" Orientation="Horizontal">
+						<Label Margin="0,0,3,0"
+							   FontFamily="{StaticResource FontAwesomeLight}"
+							   FontSize="16"
+							   HorizontalOptions="Start"
+							   HorizontalTextAlignment="Start"
+							   Text="?"
+							   TextColor="{DynamicResource TextSecondaryColour}"
+							   VerticalTextAlignment="Center" />
+
+						<Label HorizontalOptions="Start"
+							   Text="Help"
+							   TextColor="{DynamicResource TextSecondaryColour}" />
+					</StackLayout>
+				</Frame>
+
+
+			</stateButton:StateButton.Content>
+		</stateButton:StateButton>
+
+        <Frame x:Name="MoveMapMessage"
+			   Grid.Row="1"
+			   Margin="10"
+			   Padding="20,15,20,15"
+			   AutomationProperties.IsInAccessibleTree="True"
+			   AutomationProperties.Name="MoveMap"
+			   BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+			   CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
+			   HasShadow="False"
+			   HorizontalOptions="Center"
+			   Opacity="0.95"
+			   VerticalOptions="Start">
+            <Frame.Triggers>
+                <DataTrigger Binding="{Binding MapMode, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+							 TargetType="Frame"
+							 Value="Static">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </Frame.Triggers>
+            <Label Margin="0"
+				   HorizontalOptions="StartAndExpand"
+				   HorizontalTextAlignment="Center"
+				   Style="{DynamicResource TextBody}"
+				   Text="MoveMap"
+				   VerticalTextAlignment="Center" />
+        </Frame>
+
+        <buttons:Tag x:Name="MapKeyBtn"
+					 Grid.Row="2"
+					 HorizontalOptions="Start"
+					 IsVisible="false"
+					 Text="MapKey"
+					 VerticalOptions="End" />
+
+        <StackLayout x:Name="LoaderBackground"
+					 Grid.Row="0"
+					 Grid.RowSpan="3"
+					 AutomationId="MapOverlay"
+					 BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+					 HorizontalOptions="FillAndExpand"
+					 VerticalOptions="FillAndExpand">
+            <lottie:SKLottieView x:Name="LoaderAnimation"
+								  Source="Location.json"
+								  RepeatMode="Restart"
+								  AutomationProperties.IsInAccessibleTree="False"
+								  HeightRequest="300"
+								  HorizontalOptions="CenterAndExpand"
+								  RepeatCount="-1"
+								  VerticalOptions="CenterAndExpand"
+								  WidthRequest="300" />
+            <Label x:Name="NoConnection"
+				   Margin="0,0,0,25"
+				   HorizontalTextAlignment="Center"
+				   IsVisible="False"
+				   Style="{StaticResource TextSection}"
+				   Text="NoInternet" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

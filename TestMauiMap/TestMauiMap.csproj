@@ -50,10 +50,15 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Raw\index.html" />
+	  <None Remove="Resources\Raw\ishare.html" />
+	  <None Remove="Resources\Raw\Location.json" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="IeuanWalker.GeoUK" Version="1.0.5" />
+		<PackageReference Include="IeuanWalker.Maui.StateButton" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,9 +66,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\Buttons\Tag.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\iShareTestPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\TestWebViewConnectionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>

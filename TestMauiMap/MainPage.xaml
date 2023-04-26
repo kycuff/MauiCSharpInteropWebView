@@ -12,7 +12,7 @@
 
             <Button Text="Test Web View" Clicked="Button_Clicked"/>
 
-            <Button Text="iShare" />
+            <Button Text="iShare" Clicked="Button_Clicked_1"/>
 
         </VerticalStackLayout>
     </ScrollView>

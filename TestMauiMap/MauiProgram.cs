@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using IeuanWalker.Maui.StateButton;
+using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace TestMauiMap
 {
@@ -9,11 +11,12 @@ namespace TestMauiMap
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseSkiaSharp()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                }).Services.AddHybridWebView();
+                }).UseStateButton().Services.AddHybridWebView();
 
 #if DEBUG
 		builder.Logging.AddDebug();

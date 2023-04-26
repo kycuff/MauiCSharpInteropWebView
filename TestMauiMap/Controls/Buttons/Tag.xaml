@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="TestMauiMap.Controls.Buttons.Tag"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <stateButton:StateButton
+                BackgroundColor="#FFFFFF"
+                Clicked="StateButton_Clicked"
+                Stroke="#edecec"
+                StrokeShape="Rectangle 40">
+                <stateButton:StateButton.Triggers>
+                    <Trigger TargetType="stateButton:StateButton" Property="State" Value="Pressed">
+                        <Setter Property="Stroke" Value="#086c6d" />
+                    </Trigger>
+                </stateButton:StateButton.Triggers>
+                <Label
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    Text="{TemplateBinding Text}"
+                    TextColor="#086c6d"
+                    VerticalTextAlignment="Center" />
+            </stateButton:StateButton>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>

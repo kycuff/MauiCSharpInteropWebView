@@ -40,7 +40,7 @@
 								 VerticalOptions="Start">
         <stateButton:StateButton.Content>
 				<Frame Padding="13,10,14,10"
-					   BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+					   BackgroundColor="#FFFFFF"
 					   CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
 					   HasShadow="False"
 					   HorizontalOptions="Start"
@@ -50,24 +50,23 @@
 									 TargetType="Frame"
 									 Value="Pressed">
 							<Setter Property="Background">
-								<SolidColorBrush Color="{DynamicResource BackgroundGradientStartColor}" />
+								<SolidColorBrush Color="#FCFCFC" />
 							</Setter>
 						</DataTrigger>
 					</Frame.Triggers>
 
 					<StackLayout HorizontalOptions="Start" Orientation="Horizontal">
 						<Label Margin="0,0,3,0"
-							   FontFamily="{StaticResource FontAwesomeLight}"
 							   FontSize="16"
 							   HorizontalOptions="Start"
 							   HorizontalTextAlignment="Start"
 							   Text="?"
-							   TextColor="{DynamicResource TextSecondaryColour}"
+							   TextColor="#086c6d"
 							   VerticalTextAlignment="Center" />
 
 						<Label HorizontalOptions="Start"
 							   Text="Help"
-							   TextColor="{DynamicResource TextSecondaryColour}" />
+							   TextColor="#086c6d" />
 					</StackLayout>
 				</Frame>
 
@@ -81,7 +80,7 @@
 			   Padding="20,15,20,15"
 			   AutomationProperties.IsInAccessibleTree="True"
 			   AutomationProperties.Name="MoveMap"
-			   BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+			   BackgroundColor="#FFFFFF"
 			   CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
 			   HasShadow="False"
 			   HorizontalOptions="Center"
@@ -97,7 +96,6 @@
             <Label Margin="0"
 				   HorizontalOptions="StartAndExpand"
 				   HorizontalTextAlignment="Center"
-				   Style="{DynamicResource TextBody}"
 				   Text="MoveMap"
 				   VerticalTextAlignment="Center" />
         </Frame>
@@ -113,7 +111,7 @@
 					 Grid.Row="0"
 					 Grid.RowSpan="3"
 					 AutomationId="MapOverlay"
-					 BackgroundColor="{DynamicResource PrimaryBackgroundColour}"
+					 BackgroundColor="#FFFFFF"
 					 HorizontalOptions="FillAndExpand"
 					 VerticalOptions="FillAndExpand">
             <lottie:SKLottieView x:Name="LoaderAnimation"
@@ -129,7 +127,6 @@
 				   Margin="0,0,0,25"
 				   HorizontalTextAlignment="Center"
 				   IsVisible="False"
-				   Style="{StaticResource TextSection}"
 				   Text="NoInternet" />
         </StackLayout>
     </Grid>

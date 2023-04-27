@@ -94,13 +94,13 @@ public partial class iShareTestPage : ContentPage
         }
     }
 
-    private void OnDisappearing(object sender, EventArgs eventArgs)
+    protected override void OnDisappearing()
     {
         //IshareView.RemoveAllLocalCallbacks();
         Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
     }
 
-    private void OnAppearing(object sender, EventArgs eventArgs)
+    protected override void OnAppearing()
     {
         if (MapMode == MapModeEnum.Static)
         {

@@ -111,6 +111,7 @@ public partial class iShareTestPage : ContentPage
             IshareView.AddLocalCallback(this, nameof(MapMovedCSharp));
         }
 
+        IshareView.AddLocalCallback(this, nameof(DOMContentLoadedCSharp));
         IshareView.AddLocalCallback(this, nameof(MapLoadedCSharp));
         IshareView.AddLocalCallback(this, nameof(CoordinatesCSharp));
 
@@ -170,28 +171,36 @@ public partial class iShareTestPage : ContentPage
     /// </summary>
     public async Task<EastingNorthing> GetLocation()
     {
-        Easting = null;
-        Northing = null;
+        Easting = null; Northing = null;// Trigger JS to get location
+        var result = await IshareView.InvokeJsMethodAsync("getLocation").ConfigureAwait(true);
 
-        // Trigger JS to get location
-        var result = await IshareView.EvaluateJavaScriptAsync("getLocation()").ConfigureAwait(true);
-        string[] eastNorth = result.Split(',');
-
-        Easting = double.Parse(eastNorth[0]);
-        Northing = double.Parse(eastNorth[1]);
-
-        return new EastingNorthing(Easting ?? 0, Northing ?? 0);
+        if(result is not null)
+        {
+            string[] eastNorth = result.Split(',');
+            Easting = double.Parse(eastNorth[0]);
+            Northing = double.Parse(eastNorth[1]);
+        }
+        
+        return new EastingNorthing(Easting ?? 0, Northing ?? 0);
     }
 
-    private void CoordinatesCSharp(string obj)
+        private void CoordinatesCSharp(double? easting, double? northing)
     {
-        string[] eastNorth = obj.Split(',');
-
-        Easting = double.Parse(eastNorth[0]);
-        Northing = double.Parse(eastNorth[1]);
+        if (easting is null || northing is null)
+        {
+            return;
+        }
+        Easting = easting;
+        Northing = northing;
     }
 
-    private void MapLoadedCSharp(string obj)
+
+    private async Task DOMContentLoadedCSharp()
+    {
+        MainThread.BeginInvokeOnMainThread(async () => await IshareView.InvokeJsMethodAsync("loadmap", Layers).ConfigureAwait(true));
+    }
+
+    private void MapLoadedCSharp()
     {
         MainThread.BeginInvokeOnMainThread(async () =>
         {
@@ -272,7 +281,7 @@ public partial class iShareTestPage : ContentPage
         });
     }
 
-    private async void MapMovedCSharp(string obj)
+    private async void MapMovedCSharp()
     {
         IshareView.RemoveLocalCallback("mapMovedCSharp");
 

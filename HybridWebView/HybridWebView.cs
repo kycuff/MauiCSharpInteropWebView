@@ -110,6 +110,11 @@ namespace HybridWebView
                 }
             }
 
+            if (invokeMethod is null)
+            {
+                return;
+            }
+
             if (invokeData.ParamValues is not null && invokeMethod.GetParameters().Length != invokeData.ParamValues.Length)
             {
                 throw new InvalidOperationException($"The number of parameters on {nameof(JSInvokeTarget)}'s method {invokeData.MethodName} ({invokeMethod.GetParameters().Length}) doesn't match the number of values passed from JavaScript code ({invokeData.ParamValues.Length}).");

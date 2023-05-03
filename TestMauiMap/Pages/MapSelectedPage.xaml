@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TestMauiMap.Pages.MapSelectedPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:TestMauiMap.Controls.Buttons"
+    xmlns:hwv="clr-namespace:HybridWebView;assembly=HybridWebView"
+    xmlns:lottie="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
+    Title="MapSelectedPage">
+
+    <Grid
+        Margin="0"
+        Padding="0"
+        BackgroundColor="Red"
+        RowDefinitions="*,auto"
+        RowSpacing="0">
+
+        <!--  IMPORTANT: Need to wrap ishare in stacklayout becuase without IsInAccessibleTree=False on the webview screenreader will enter ishare. Stacklayout allows us to add some accessible text  -->
+        <hwv:HybridWebView
+            x:Name="IshareView"
+            Grid.Row="0"
+            AutomationProperties.IsInAccessibleTree="False"
+            BackgroundColor="blue"
+            HybridAssetRoot=""
+            MainFile="ishare.html"
+            VerticalOptions="FillAndExpand" />
+
+        <stateButton:StateButton
+            x:Name="HelpBtn"
+            Grid.Row="0"
+            Margin="5,6,5,0"
+            AutomationProperties.IsInAccessibleTree="True"
+            AutomationProperties.Name="Help"
+            HorizontalOptions="Start"
+            IsVisible="{Binding ShowMapHelpButton, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+            VerticalOptions="Start">
+            <stateButton:StateButton.Content>
+                <Frame
+                    Padding="13,10,14,10"
+                    BackgroundColor="#FFFFFF"
+                    CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
+                    HasShadow="False"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
+                    <Frame.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={RelativeSource AncestorType={x:Type stateButton:StateButton}}, Path=State}"
+                            TargetType="Frame"
+                            Value="Pressed">
+                            <Setter Property="Background">
+                                <SolidColorBrush Color="#FCFCFC" />
+                            </Setter>
+                        </DataTrigger>
+                    </Frame.Triggers>
+
+                    <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
+                        <Label
+                            Margin="0,0,3,0"
+                            FontSize="16"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            Text="?"
+                            TextColor="#086c6d"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            HorizontalOptions="Start"
+                            Text="Help"
+                            TextColor="#086c6d" />
+                    </StackLayout>
+                </Frame>
+
+
+            </stateButton:StateButton.Content>
+        </stateButton:StateButton>
+
+        <Frame
+            x:Name="MoveMapMessage"
+            Grid.Row="1"
+            Margin="10"
+            Padding="20,15,20,15"
+            AutomationProperties.IsInAccessibleTree="True"
+            AutomationProperties.Name="MoveMap"
+            BackgroundColor="#FFFFFF"
+            CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
+            HasShadow="False"
+            HorizontalOptions="Center"
+            Opacity="0.95"
+            VerticalOptions="Start">
+            <Frame.Triggers>
+                <DataTrigger
+                    Binding="{Binding MapMode, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                    TargetType="Frame"
+                    Value="Static">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </Frame.Triggers>
+            <Label
+                Margin="0"
+                HorizontalOptions="StartAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="MoveMap"
+                VerticalTextAlignment="Center" />
+        </Frame>
+
+        <buttons:Tag
+            x:Name="MapKeyBtn"
+            Grid.Row="2"
+            HorizontalOptions="Start"
+            IsVisible="false"
+            Text="MapKey"
+            VerticalOptions="End" />
+
+        <StackLayout
+            x:Name="LoaderBackground"
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            AutomationId="MapOverlay"
+            BackgroundColor="#FFFFFF"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <lottie:SKLottieView
+                x:Name="LoaderAnimation"
+                AutomationProperties.IsInAccessibleTree="False"
+                HeightRequest="300"
+                HorizontalOptions="CenterAndExpand"
+                RepeatCount="-1"
+                RepeatMode="Restart"
+                Source="Location.json"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="300" />
+            <Label
+                x:Name="NoConnection"
+                Margin="0,0,0,25"
+                HorizontalTextAlignment="Center"
+                IsVisible="False"
+                Text="NoInternet" />
+        </StackLayout>
+
+
+        <StackLayout
+            Grid.Row="3"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Button
+                Margin="20"
+                Clicked="Button_Clicked"
+                Text="Submit" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

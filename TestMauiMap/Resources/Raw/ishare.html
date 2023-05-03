@@ -187,9 +187,9 @@
             var eastingNorthing = astun.mapWrapper.map.center;
             var easting = eastingNorthing['lon'];
             var northing = eastingNorthing['lat'];
+            console.log(easting);
 
-            HybridWebView.SendInvokeMessageToDotNet("CoordinatesCSharp", [easting, northing]);
-            //coordinatesCSharp(easting + ',' + northing);
+            return `${easting},${northing}`;
         }
     </script>
     <!-- Remove keylisteners -->

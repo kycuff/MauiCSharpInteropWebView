@@ -19,5 +19,15 @@ namespace TestMauiMap
         {
             await Navigation.PushAsync(new iShareTestPage());
         }
+
+        async void MapSelected_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MapSelectedPage());
+        }
+
+        async void MapStatic_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MapStaticPage());
+        }
     }
 }

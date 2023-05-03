@@ -13,6 +13,10 @@
             <Button Text="Test Web View" Clicked="Button_Clicked"/>
 
             <Button Text="iShare" Clicked="Button_Clicked_1"/>
+			
+            <Button Text="Map (SelectedLocation)" Clicked="MapSelected_Clicked"/>
+			
+            <Button Text="Map (Static)" Clicked="MapStatic_Clicked"/>
 
         </VerticalStackLayout>
     </ScrollView>

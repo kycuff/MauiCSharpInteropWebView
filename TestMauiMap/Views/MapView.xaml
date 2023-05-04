@@ -7,7 +7,8 @@
              xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
              x:Class="TestMauiMap.Views.MapView">
 
-    <Grid
+    <Grid Loaded="Loaded" 
+        Unloaded="UnLoaded"
         Margin="0"
         Padding="0"
         BackgroundColor="Red"

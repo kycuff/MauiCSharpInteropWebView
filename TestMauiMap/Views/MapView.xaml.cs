@@ -2,6 +2,7 @@ using GeoUK.Coordinates;
 using SkiaSharp.Extended.UI.Controls;
 using System.Diagnostics;
 using TestMauiMap.Exceptions;
+using TestMauiMap.Helpers;
 using TestMauiMap.Services.GeoLocation;
 
 namespace TestMauiMap.Views;
@@ -85,6 +86,8 @@ public partial class MapView : ContentView
         InitializeComponent();
 
         _geoLocationService = new GeoLocationService();
+
+        //this.AttachLifecycleToPage(OnAppearing, OnDisappearing);
         //_accessibilityService = DependencyService.Get<IAccessibilityService>();
         //_loadingService = new LoadingService();
 
@@ -94,13 +97,14 @@ public partial class MapView : ContentView
         }
     }
 
-    private void OnDisappearing(object sender, EventArgs eventArgs)
+    private void UnLoaded(object sender, EventArgs e)
     {
         //IshareView.RemoveAllLocalCallbacks();
         Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
     }
 
-    private void OnAppearing(object sender, EventArgs eventArgs)
+    
+    private void Loaded(object sender, EventArgs e)
     {
         if (MapMode == MapModeEnum.Static)
         {

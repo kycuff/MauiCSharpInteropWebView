@@ -1,8 +1,6 @@
 using GeoUK.Coordinates;
-using SkiaSharp.Extended.UI.Controls;
 using System.Diagnostics;
 using TestMauiMap.Exceptions;
-using TestMauiMap.Helpers;
 using TestMauiMap.Services.GeoLocation;
 
 namespace TestMauiMap.Views;

@@ -1,5 +1,6 @@
 ﻿using IeuanWalker.Maui.StateButton;
 using Microsoft.Extensions.Logging;
+using Mopups.Hosting;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace TestMauiMap
@@ -11,6 +12,7 @@ namespace TestMauiMap
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureMopups()
                 .UseSkiaSharp()
                 .ConfigureFonts(fonts =>
                 {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestMauiMap.Controls.Custom.MapImage">
+    <ContentView.Content>
+        <Frame Padding="0"
+               CornerRadius="6"
+               HasShadow="False"
+               IsClippedToBounds="True">
+            <Image x:Name="Image"
+                   Aspect="AspectFill"
+                   AutomationProperties.HelpText="Help Text"
+                   AutomationProperties.IsInAccessibleTree="true"
+                   HeightRequest="250" />
+        </Frame>
+    </ContentView.Content>
+</ContentView>

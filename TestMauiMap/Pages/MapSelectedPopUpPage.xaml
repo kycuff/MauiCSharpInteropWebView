@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage
+    x:Class="TestMauiMap.Pages.MapSelectedPopUpPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Animations="clr-namespace:Mopups.Animations;assembly=Mopups"
+    xmlns:custom="clr-namespace:TestMauiMap.Controls.Custom"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    Title="MapSelectedPopUpPage"
+    BackgroundColor="#80000000">
+    <mopups:PopupPage.Animation>
+        <Animations:ScaleAnimation
+            DurationIn="700"
+            PositionIn="Top"
+            PositionOut="Right"
+            ScaleIn="1"
+            ScaleOut="0" />
+    </mopups:PopupPage.Animation>
+    <Frame
+        Margin="15"
+        Padding="15"
+        BackgroundColor="White"
+        CornerRadius="6"
+        HorizontalOptions="FillAndExpand"
+        IsClippedToBounds="True">
+
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+
+            <StackLayout>
+                <!--  Close button  -->
+                <Button
+                    Margin="0"
+                    Clicked="BtnClose_Clicked"
+                    Text="X" />
+
+                <!--  Page Header  -->
+                <Label
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Location" />
+
+                <!--  Location Image  -->
+                <custom:MapImage Easting="318342" Northing="174169" />
+
+                <Label Margin="5,20,5,10" Text="Result" />
+                <!--  Location details  -->
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="Easting:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="Northing:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="IsPrivate:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="IsSchools:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="IsHousing:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="IsHighspeedRoute:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="IsParks:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="IsOutsideCardiff:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Margin="5,0" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="All info on point:" />
+                            <Span Text=" " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</mopups:PopupPage>

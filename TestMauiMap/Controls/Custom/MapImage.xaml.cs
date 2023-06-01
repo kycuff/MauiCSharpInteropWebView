@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace TestMauiMap.Controls.Custom;
 
 public partial class MapImage : ContentView
@@ -31,6 +33,17 @@ public partial class MapImage : ContentView
 		InitializeComponent();
 		Image.Source = ImageSource.FromUri(new Uri(GenerateImageLink()));
 	}
+
+    protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        base.OnPropertyChanged(propertyName);
+
+        if (!propertyName.Equals(nameof(Easting)) && !propertyName.Equals(nameof(Northing)) && !propertyName.Equals(nameof(Zoom))) return;
+        if (Image != null)
+        {
+            Image.Source = ImageSource.FromUri(new Uri(GenerateImageLink()));
+        }
+    }
 
     private string GenerateImageLink()
     {

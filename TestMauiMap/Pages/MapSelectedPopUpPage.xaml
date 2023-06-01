@@ -48,7 +48,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="Easting:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.Easting}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -56,7 +56,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="Northing:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.Northing}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -64,7 +64,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="IsPrivate:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.IsPrivate}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -72,7 +72,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="IsSchools:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.IsSchools}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -80,7 +80,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="IsHousing:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.IsHousing}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -88,7 +88,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="IsHighspeedRoute:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.IsHighspeedRoute}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -96,7 +96,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="IsParks:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.IsParks}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -104,7 +104,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span FontAttributes="Bold" Text="IsOutsideCardiff:" />
-                            <Span Text=" " />
+                            <Span Text="{Binding Request.IsParks}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

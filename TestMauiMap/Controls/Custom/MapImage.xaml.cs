@@ -47,6 +47,6 @@ public partial class MapImage : ContentView
 
     private string GenerateImageLink()
     {
-        return $"insertURL.jpg";
+        return $"https://ishare.cardiff.gov.uk/MapGetImage.aspx?RequestType=Map&MapWidth=400&MapHeight=250&MapSource=Cardiff_Live/base_Standard&Easting={Easting}&Northing={Northing}&Zoom={Zoom}&mapid=-1&ServiceAction=GotoLocation&ZoomPin=1&o=1&Layers=Cardiff.jpg";
     }
 }

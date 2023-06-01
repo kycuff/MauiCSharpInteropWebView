@@ -40,7 +40,7 @@
                     Text="Location" />
 
                 <!--  Location Image  -->
-                <custom:MapImage Easting="318342" Northing="174169" />
+                <custom:MapImage Easting="{Binding Request.Easting}" Northing="{Binding Request.Northing}" />
 
                 <Label Margin="5,20,5,10" Text="Result" />
                 <!--  Location details  -->

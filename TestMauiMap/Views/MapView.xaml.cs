@@ -98,6 +98,10 @@ public partial class MapView : ContentView
     private void UnLoaded(object sender, EventArgs e)
     {
         //IshareView.RemoveAllLocalCallbacks();
+        IshareView.RemoveLocalCallback(nameof(DOMContentLoadedCSharp));
+        IshareView.RemoveLocalCallback(nameof(MapLoadedCSharp));
+        IshareView.RemoveLocalCallback(nameof(CoordinatesCSharp));
+        IshareView.RemoveLocalCallback( nameof(MapMovedCSharp));
         Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
     }
 
@@ -259,6 +263,8 @@ public partial class MapView : ContentView
                 {
                     await UpdateMap(eastingPosition ?? 0, northingPosition ?? 0, zoom, MapMode.Equals(MapModeEnum.Static)).ConfigureAwait(true);
 
+                    await Task.Delay(100);
+
                     try
                     {
                         EastingNorthing currentLocation = await GetLocation();
@@ -285,7 +291,7 @@ public partial class MapView : ContentView
 
     private async void MapMovedCSharp()
     {
-        IshareView.RemoveLocalCallback("mapMovedCSharp");
+        IshareView.RemoveLocalCallback(nameof(MapMovedCSharp));
 
         await Task.Delay(1500).ConfigureAwait(false);
 
@@ -306,10 +312,10 @@ public partial class MapView : ContentView
     //    await PopupNavigation.Instance.PushAsync(new MapHelpPopup(SkipMapClicked));
     //}
 
-    //private void MapKeyBtn_OnClicked(object sender, EventArgs e)
-    //{
-    //    MapKeyClicked?.Invoke(this, e);
-    //}
+    private void MapKeyBtn_OnClicked(object sender, EventArgs e)
+    {
+        MapKeyClicked?.Invoke(this, e);
+    }
 
     public enum MapModeEnum
     {

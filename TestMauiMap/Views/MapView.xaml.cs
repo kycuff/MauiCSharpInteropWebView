@@ -213,15 +213,13 @@ public partial class MapView : ContentView
     {
         MainThread.BeginInvokeOnMainThread(async () =>
         {
-
-            //await IshareView.EvaluateJavaScriptAsync($"loadmap('{Layers}')").ConfigureAwait(true);
             // Page load animation
             Animation loadingAnimation = new Animation
-                {
-                    { 0, 1, new Animation(_ => LoaderBackground.Opacity = _, 1, 0, Easing.Linear) },
-                    { 0, 1, new Animation(_ => LoaderAnimation.Opacity = _, 1, 0, Easing.Linear) },
-                    { 0, 1, new Animation(_ => LoaderAnimation.Scale = _, 1, 2, Easing.Linear) },
-                };
+            {
+                { 0, 1, new Animation(_ => LoaderBackground.Opacity = _, 1, 0, Easing.Linear) },
+                { 0, 1, new Animation(_ => LoaderAnimation.Opacity = _, 1, 0, Easing.Linear) },
+                { 0, 1, new Animation(_ => LoaderAnimation.Scale = _, 1, 2, Easing.Linear) },
+            };
             loadingAnimation.Commit(this, nameof(loadingAnimation), 16, 500u, finished: (_, __) => LoaderBackground.IsVisible = false);
 
             try

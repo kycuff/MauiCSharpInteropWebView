@@ -177,17 +177,20 @@ public partial class MapView : ContentView
     /// </summary>
     public async Task<EastingNorthing> GetLocation()
     {
-        Easting = null; Northing = null;// Trigger JS to get location
-        var result = await IshareView.InvokeJsMethodAsync("getLocation").ConfigureAwait(true);
+        Stopwatch stopwatch = Stopwatch.StartNew();
 
-        if (result is not null)
+        do
         {
-            string[] eastNorth = result.Split(',');
-            Easting = double.Parse(eastNorth[0]);
-            Northing = double.Parse(eastNorth[1]);
-        }
+            string result = await IshareView.InvokeJsMethodAsync("getLocation").ConfigureAwait(true);
 
-        return new EastingNorthing(Easting ?? 0, Northing ?? 0);
+            if (result is not null)
+            {
+                string[] eastNorth = result.Split(',');
+                return new EastingNorthing(double.Parse(eastNorth[0]), double.Parse(eastNorth[1]));
+            }
+        } while (stopwatch.Elapsed.TotalSeconds <= 3);
+
+        throw new Exception("Failed to get location");
     }
 
     private void CoordinatesCSharp(double? easting, double? northing)
@@ -211,7 +214,7 @@ public partial class MapView : ContentView
         MainThread.BeginInvokeOnMainThread(async () =>
         {
 
-            await IshareView.EvaluateJavaScriptAsync($"loadmap('{Layers}')").ConfigureAwait(true);
+            //await IshareView.EvaluateJavaScriptAsync($"loadmap('{Layers}')").ConfigureAwait(true);
             // Page load animation
             Animation loadingAnimation = new Animation
                 {

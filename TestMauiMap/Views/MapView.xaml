@@ -38,7 +38,6 @@
                 <Frame
                     Padding="13,10,14,10"
                     BackgroundColor="#FFFFFF"
-                    CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
                     HasShadow="False"
                     HorizontalOptions="Start"
                     VerticalOptions="Start">
@@ -82,7 +81,6 @@
             AutomationProperties.IsInAccessibleTree="True"
             AutomationProperties.Name="MoveMap"
             BackgroundColor="#FFFFFF"
-            CornerRadius="{Binding Source={RelativeSource Self}, Path=Height, Converter={StaticResource RoundCornerRadiusConverter}}"
             HasShadow="False"
             HorizontalOptions="Center"
             Opacity="0.95"

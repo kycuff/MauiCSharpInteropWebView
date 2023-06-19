@@ -1,5 +1,6 @@
 using GeoUK.Coordinates;
 using Mopups.Pages;
+using Mopups.Services;
 using TestMauiMap.ViewModels;
 
 namespace TestMauiMap.Pages;
@@ -15,13 +16,8 @@ public partial class MapSelectedPopUpPage
         BindingContext = _viewModel;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void BtnClose_Clicked(object sender, EventArgs e)
     {
-
-    }
-
-    private void BtnClose_Clicked(object sender, EventArgs e)
-    {
-
+        await MopupService.Instance.PopAsync();
     }
 }

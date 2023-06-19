@@ -16,12 +16,12 @@ public partial class MapSelectedPage : ContentPage
         BindingContext = _viewModel;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        EastingNorthing result = new EastingNorthing(312729, 181313);
+        EastingNorthing result = await IShare.GetLocation();
         _viewModel.Request.Easting = result.Easting;
         _viewModel.Request.Northing = result.Northing;
 
-        MopupService.Instance.PushAsync(new MapSelectedPopUpPage(_viewModel));
+        await MopupService.Instance.PushAsync(new MapSelectedPopUpPage(_viewModel));
     }
 }

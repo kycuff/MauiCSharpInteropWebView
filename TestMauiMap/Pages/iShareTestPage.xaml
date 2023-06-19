@@ -7,6 +7,6 @@
     Title="iShareTestPage">
 
     <ContentPage.Content>
-        <custom:MapView x:Name="IShare"/>
+        <custom:MapView x:Name="IShare" Layers="cardiffcounty,stlights" />
     </ContentPage.Content>
 </ContentPage>

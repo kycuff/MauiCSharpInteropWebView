@@ -190,7 +190,7 @@ public partial class MapView : ContentView
             }
         } while (stopwatch.Elapsed.TotalSeconds <= 3);
 
-        throw new Exception("Failed to get location");
+        throw new FailedToPullLocationFromIshareException();
     }
 
     private void CoordinatesCSharp(double? easting, double? northing)

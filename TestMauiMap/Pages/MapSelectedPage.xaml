@@ -13,10 +13,14 @@
             BackgroundColor="White"
             RowDefinitions="*,auto"
             RowSpacing="0">
-            
-            <custom:MapView x:Name="IShare" Grid.Row="0"/>
 
-            <Button Text="Submit Button" Grid.Row="1" Margin="20" Clicked="Button_Clicked"></Button>
+            <custom:MapView x:Name="IShare" Grid.Row="0" />
+
+            <Button
+                Grid.Row="1"
+                Margin="20"
+                Clicked="Button_Clicked"
+                Text="Submit Button" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

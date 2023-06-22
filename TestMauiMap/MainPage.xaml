@@ -10,13 +10,13 @@
             Spacing="25"
             VerticalOptions="Center">
 
-            <Button Text="Test Web View" Clicked="Button_Clicked"/>
+            <Button Clicked="Button_Clicked" Text="Test Web View" />
 
-            <Button Text="iShare" Clicked="Button_Clicked_1"/>
-			
-            <Button Text="Map (SelectedLocation)" Clicked="MapSelected_Clicked"/>
-			
-            <Button Text="Map (Static)" Clicked="MapStatic_Clicked"/>
+            <Button Clicked="Button_Clicked_1" Text="iShare" />
+
+            <Button Clicked="MapSelected_Clicked" Text="Map (SelectedLocation)" />
+
+            <Button Clicked="MapStatic_Clicked" Text="Map (Static)" />
 
         </VerticalStackLayout>
     </ScrollView>

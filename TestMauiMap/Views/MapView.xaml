@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:buttons="clr-namespace:TestMauiMap.Controls.Buttons"
-             xmlns:hwv="clr-namespace:HybridWebView;assembly=HybridWebView"
-             xmlns:lottie="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
-             x:Class="TestMauiMap.Views.MapView">
+<ContentView
+    x:Class="TestMauiMap.Views.MapView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:TestMauiMap.Controls.Buttons"
+    xmlns:hwv="clr-namespace:HybridWebView;assembly=HybridWebView"
+    xmlns:lottie="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton">
 
-    <Grid Loaded="Loaded" 
-        Unloaded="UnLoaded"
+    <Grid
         Margin="0"
         Padding="0"
         BackgroundColor="Red"
+        Loaded="Loaded"
         RowDefinitions="*"
-        RowSpacing="0">
+        RowSpacing="0"
+        Unloaded="UnLoaded">
 
         <!--  IMPORTANT: Need to wrap ishare in stacklayout becuase without IsInAccessibleTree=False on the webview screenreader will enter ishare. Stacklayout allows us to add some accessible text  -->
         <hwv:HybridWebView

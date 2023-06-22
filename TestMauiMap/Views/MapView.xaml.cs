@@ -2,6 +2,7 @@ using GeoUK.Coordinates;
 using System.Diagnostics;
 using TestMauiMap.Exceptions;
 using TestMauiMap.Services.GeoLocation;
+using TestMauiMap.Services.Loading;
 
 namespace TestMauiMap.Views;
 
@@ -77,7 +78,7 @@ public partial class MapView : ContentView
 
     private readonly IGeoLocationService _geoLocationService;
     //private readonly IAccessibilityService _accessibilityService;
-    //private readonly ILoadingService _loadingService;
+    private readonly ILoadingService _loadingService;
 
     public MapView()
     {
@@ -87,7 +88,7 @@ public partial class MapView : ContentView
 
         //this.AttachLifecycleToPage(OnAppearing, OnDisappearing);
         //_accessibilityService = DependencyService.Get<IAccessibilityService>();
-        //_loadingService = new LoadingService();
+        _loadingService = new LoadingService();
 
         if (MapKeyClicked != null)
         {
@@ -224,7 +225,7 @@ public partial class MapView : ContentView
 
             try
             {
-                //await _loadingService.ShowLoader(DefaultEasting == null ? AppResources.LblGettingLocation : AppResources.LblLoading);
+                await _loadingService.ShowLoader(DefaultEasting == null ? ResourcesManager.ResourceManager.GetString("LblGettingLocation") : ResourcesManager.ResourceManager.GetString("LblLoading"));
 
                 double? eastingPosition = DefaultEasting;
                 double? northingPosition = DefaultNorthing;
@@ -285,7 +286,7 @@ public partial class MapView : ContentView
             }
             finally
             {
-                //await _loadingService.HideLoader();
+                await _loadingService.HideLoader();
             }
         });
     }

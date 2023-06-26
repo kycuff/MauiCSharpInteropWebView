@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="TestMauiMap.Controls.Buttons.CallOut"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
+             Margin="0,20,0,20">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Frame Margin="0"
+                   Padding="0"
+                   CornerRadius="6"
+                   HasShadow="False">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Offset="0.1" Color="{DynamicResource TealFadeEnd}" />
+                        <GradientStop Offset="1.0" Color="{DynamicResource TealFadeStart}" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <stateButton:StateButton Margin="0"
+                                         Padding="0"
+                                         AutomationProperties.IsInAccessibleTree="True"
+                                         AutomationProperties.Name="{TemplateBinding AccessibilityName}"
+                                         Clicked="StateButton_Clicked">
+                    <stateButton:StateButton.Triggers>
+                        <DataTrigger Binding="{TemplateBinding AccessibilityName,
+                                                               Converter={StaticResource HasDataConverter}}"
+                                     TargetType="stateButton:StateButton"
+                                     Value="false">
+                            <Setter Property="AutomationProperties.Name" Value="{TemplateBinding Text}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{TemplateBinding AccessibilityName,
+                                                               Converter={StaticResource HasDataConverter}}"
+                                     TargetType="stateButton:StateButton"
+                                     Value="true">
+                            <Setter Property="AutomationProperties.Name" Value="{TemplateBinding AccessibilityName}" />
+                        </DataTrigger>
+                    </stateButton:StateButton.Triggers>
+                    <stateButton:StateButton.Content>
+                        <Frame Margin="0"
+                               Padding="15,18,15,18"
+                               BackgroundColor="Transparent"
+                               CornerRadius="6"
+                               HasShadow="False">
+                            <Frame.Triggers>
+                                <DataTrigger Binding="{Binding Source={RelativeSource AncestorType={x:Type stateButton:StateButton}}, Path=State}"
+                                             TargetType="Frame"
+                                             Value="Pressed">
+                                    <Setter Property="Background">
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Offset="0.1" Color="{DynamicResource TealFadeEndHover}" />
+                                            <GradientStop Offset="1.0" Color="{DynamicResource TealFadeStartHover}" />
+                                        </LinearGradientBrush>
+                                    </Setter>
+                                </DataTrigger>
+
+                            </Frame.Triggers>
+                            <Grid ColumnDefinitions="auto,*,auto" RowDefinitions="auto">
+                                <Label Grid.Column="0"
+                                       Margin="10,0,10,0"
+                                       FontFamily="{StaticResource FontAwesomeLight}"
+                                       FontSize="{TemplateBinding IconStartFontSize}"
+                                       HorizontalOptions="End"
+                                       Text="{TemplateBinding IconStart}"
+                                       TextColor="{DynamicResource TextButtonColour}"
+                                       VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{TemplateBinding IconStart,
+                                                                               Converter={StaticResource HasDataConverter}}"
+                                                     TargetType="Label"
+                                                     Value="false">
+                                            <Setter Property="IsVisible" Value="false" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                                <Label Grid.Column="1"
+                                       FontSize="Small"
+                                       Text="{TemplateBinding Text}"
+                                       TextColor="{DynamicResource TextButtonColour}"
+                                       VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{TemplateBinding TextPosition}"
+                                                     TargetType="Label"
+                                                     Value="Centre">
+                                            <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                        </DataTrigger>
+
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Grid.Column="2"
+                                       Padding="20,0,0,0"
+                                       FontFamily="{StaticResource FontAwesomeLight}"
+                                       FontSize="{TemplateBinding IconFontSize}"
+                                       HorizontalOptions="End"
+                                       Text="{TemplateBinding Icon}"
+                                       TextColor="{DynamicResource TextButtonColour}"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </stateButton:StateButton.Content>
+                </stateButton:StateButton>
+            </Frame>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>  

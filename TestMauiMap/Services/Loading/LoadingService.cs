@@ -7,7 +7,7 @@ namespace TestMauiMap.Services.Loading;
 public class LoadingService : ILoadingService
 {
     private readonly LoadingPopup _defaultLoadingPopup = new LoadingPopup();
-    private readonly string _defaultLoadingText = ResourcesManager.ResourceManager.GetString("LblLoading");
+    private readonly string _defaultLoadingText = "Loading....";
 
     public async Task ShowLoader()
     {

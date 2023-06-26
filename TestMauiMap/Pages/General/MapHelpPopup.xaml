@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage x:Class="TestMauiMap.Pages.General.MapHelpPopup"
+                 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:animations="clr-namespace:Mopups.Animations;assembly=Mopups"
+                 xmlns:buttons="clr-namespace:TestMauiMap.Controls.Buttons"
+                 xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+                 xmlns:sections="clr-namespace:TestMauiMap.Controls.Sections"
+                 AndroidTalkbackAccessibilityWorkaround="True">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="500"
+                                   PositionIn="Center"
+                                   PositionOut="Right"
+                                   ScaleIn="1"
+                                   ScaleOut="0" />
+    </pages:PopupPage.Animation>
+    <ScrollView>
+        <Border Margin="15"
+               Padding="0"
+               BackgroundColor="#FFFFFF"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <!-- IMPORTANT: StackLayout needed to stretch popup -->
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                <Grid Margin="15,15,15,5"
+                      ColumnDefinitions="*,40"
+                      RowDefinitions="auto,auto">
+                    <!-- Title -->
+                    <Label x:Name="PopupTitle"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Text="How to use"
+                           VerticalOptions="CenterAndExpand"
+                           VerticalTextAlignment="Center" />
+
+                    <!-- Close Button -->
+                    <buttons:Close Grid.Row="0"
+                                   Grid.Column="1"
+                                   Margin="0"
+                                   Clicked="BtnClose_OnClicked" />
+                </Grid>
+
+
+
+                <VerticalStackLayout Margin="15,0,15,5">
+                    <!-- Message -->
+                    <Label HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Text="How to use 1"
+                           VerticalOptions="Start" />
+                    <!-- Message -->
+                    <Label HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Text="How to use 2"
+                           VerticalOptions="Start" />
+
+                    <Label HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Text="How to use 3"
+                           VerticalOptions="Start" />
+
+                    <sections:Divider x:Name="divider"
+                                      Margin="0,5,0,0"
+                                      HeightRequest="1"
+                                      IsVisible="false" />
+                    <buttons:CallOut x:Name="skipMapBtn"
+                                     Clicked="SkipMap_Clicked"
+                                     IsVisible="false"
+                                     Text="I can't use the map" />
+                </VerticalStackLayout>
+            </StackLayout>
+        </Border>
+    </ScrollView>
+</pages:PopupPage>

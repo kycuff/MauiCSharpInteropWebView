@@ -4,16 +4,13 @@ namespace TestMauiMap.Pages.General;
 
 public partial class LoadingPopup : PopupPage
 {
-    //private readonly IAccessibilityService _accessibilityService;
     public LoadingPopup(string loadingText = null)
     {
         InitializeComponent();
 
-        //_accessibilityService = DependencyService.Get<IAccessibilityService>();
-
         if (loadingText == null)
         {
-            loadingText = ResourcesManager.ResourceManager.GetString("LblLoading");
+            loadingText = "LblLoading";
         }
 
         LoadingLbl.Text = loadingText;
@@ -23,7 +20,7 @@ public partial class LoadingPopup : PopupPage
     {
         base.OnAppearingAnimationEnd();
 
-        //_accessibilityService.SetFocus(Spinner).SafeFireAndForget();
+        Spinner.SetSemanticFocus();
     }
 
     protected override bool OnBackButtonPressed()

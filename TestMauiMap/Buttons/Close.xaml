@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="TestMauiMap.Controls.Buttons.Close"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
+    xmlns:styles="clr-namespace:TestMauiMap.Styles"
+    Margin="0,15,15,0"
+    HeightRequest="40"
+    HorizontalOptions="End"
+    VerticalOptions="Start"
+    WidthRequest="40">
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Border
+                Padding="0"
+                AutomationProperties.IsInAccessibleTree="False"
+                BackgroundColor="{DynamicResource AccentColour}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+                <stateButton:StateButton
+                    AutomationId="BtnClose"
+                    AutomationProperties.IsInAccessibleTree="true"
+                    Clicked="StateButton_Clicked"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <stateButton:StateButton.Content>
+
+                        <Label
+                            AutomationProperties.IsInAccessibleTree="False"
+                            FontFamily="{StaticResource FontAwesomeLight}"
+                            FontSize="13"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Static styles:IconFont.Close}"
+                            TextColor="{DynamicResource TextButtonColour}"
+                            VerticalTextAlignment="Center" />
+                    </stateButton:StateButton.Content>
+                </stateButton:StateButton>
+            </Border>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+</ContentView>  

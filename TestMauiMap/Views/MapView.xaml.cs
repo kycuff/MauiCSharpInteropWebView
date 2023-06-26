@@ -1,6 +1,9 @@
 using GeoUK.Coordinates;
+using Mopups.Services;
 using System.Diagnostics;
 using TestMauiMap.Exceptions;
+using TestMauiMap.Pages.General;
+using TestMauiMap.Services.Accessibility;
 using TestMauiMap.Services.GeoLocation;
 using TestMauiMap.Services.Loading;
 
@@ -77,7 +80,7 @@ public partial class MapView : ContentView
     #endregion Events
 
     private readonly IGeoLocationService _geoLocationService;
-    //private readonly IAccessibilityService _accessibilityService;
+    private readonly IAccessibilityService _accessibilityService;
     private readonly ILoadingService _loadingService;
 
     public MapView()
@@ -87,7 +90,7 @@ public partial class MapView : ContentView
         _geoLocationService = new GeoLocationService();
 
         //this.AttachLifecycleToPage(OnAppearing, OnDisappearing);
-        //_accessibilityService = DependencyService.Get<IAccessibilityService>();
+        _accessibilityService = DependencyService.Get<IAccessibilityService>();
         _loadingService = new LoadingService();
 
         if (MapKeyClicked != null)
@@ -225,7 +228,7 @@ public partial class MapView : ContentView
 
             try
             {
-                await _loadingService.ShowLoader(DefaultEasting == null ? ResourcesManager.ResourceManager.GetString("LblGettingLocation") : ResourcesManager.ResourceManager.GetString("LblLoading"));
+                await _loadingService.ShowLoader(DefaultEasting == null ? "GettingLocation" : "Loading");
 
                 double? eastingPosition = DefaultEasting;
                 double? northingPosition = DefaultNorthing;
@@ -309,11 +312,6 @@ public partial class MapView : ContentView
         await IshareView.EvaluateJavaScriptAsync($"updateLocation({easting}, {northing}, {zoom}, {removePin.ToString().ToLower()})").ConfigureAwait(true);
     }
 
-    //private async void HelpBtn_OnClicked(object sender, EventArgs e)
-    //{
-    //    await PopupNavigation.Instance.PushAsync(new MapHelpPopup(SkipMapClicked));
-    //}
-
     private void MapKeyBtn_OnClicked(object sender, EventArgs e)
     {
         MapKeyClicked?.Invoke(this, e);
@@ -323,5 +321,10 @@ public partial class MapView : ContentView
     {
         SelectLocation,
         Static
+    }
+
+    private async void HelpBtn_Clicked(object sender, EventArgs e)
+    {
+        await MopupService.Instance.PushAsync(new MapHelpPopup(SkipMapClicked));
     }
 }

@@ -19,28 +19,23 @@
                                    ScaleIn="1"
                                    ScaleOut="0" />
     </pages:PopupPage.Animation>
-    <StackLayout Padding="30"
-                 BackgroundColor="Transparent"
-                 HorizontalOptions="Center"
-                 VerticalOptions="Center">
-
-        <Frame Margin="20,0,20,5"
+    <Border Margin="20,0,20,5"
                Padding="20"
-               BackgroundColor="#CCFFFFFF"
-               CornerRadius="10"
-               HasShadow="False">
-            <StackLayout Spacing="10">
-                <ActivityIndicator x:Name="Spinner"
+               BackgroundColor="{StaticResource LoaderBackground}">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10"/>
+        </Border.StrokeShape>
+        <VerticalStackLayout Spacing="10">
+            <ActivityIndicator x:Name="Spinner"
                                    BackgroundColor="Transparent"
                                    IsRunning="true"
                                    Color="#086c6d" />
-                <Label x:Name="LoadingLbl"
+            <Label x:Name="LoadingLbl"
                        Margin="0"
                        FontAttributes="Bold"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center" />
-            </StackLayout>
+        </VerticalStackLayout>
 
-        </Frame>
-    </StackLayout>
+    </Border>
 </pages:PopupPage>

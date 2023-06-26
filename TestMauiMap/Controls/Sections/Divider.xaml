@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="TestMauiMap.Controls.Sections.Divider"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Border
+        Padding="0"
+        HeightRequest="2"
+        HorizontalOptions="FillAndExpand">
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Offset="0.1" Color="#e4e4e4" />
+                <GradientStop Offset="1.0" Color="#e0e0e0" />
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
+</ContentView>

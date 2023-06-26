@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="TestMauiMap.Controls.Buttons.NextBack"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sections="clr-namespace:TestMauiMap.Controls.Sections"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton"
+    xmlns:styles="clr-namespace:TestMauiMap.Styles"
+    x:Name="this"
+    Margin="0,35,0,0"
+    VerticalOptions="EndAndExpand">
+    <ContentView.Content>
+        <Border
+            Margin="0"
+            Padding="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0.1" Color="#FCFCFC" />
+                    <GradientStop Offset="1.0" Color="#edecec" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="1,auto"
+                RowSpacing="0">
+                <sections:Divider
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="1" />
+
+                <!--  Back  -->
+                <stateButton:StateButton
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    AutomationProperties.IsInAccessibleTree="True"
+                    AutomationProperties.Name="BtnBack"
+                    Clicked="BtnBack_Clicked"
+                    HorizontalOptions="Start"
+                    IsVisible="{Binding HasBackButton, Source={x:Reference this}}"
+                    PropertyChanged="BackBtn_PropertyChanged">
+                    <stateButton:StateButton.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="20,8,10,15" />
+                            <On Platform="Android" Value="20,6,10,9" />
+                        </OnPlatform>
+                    </stateButton:StateButton.Margin>
+                    <stateButton:StateButton.Content>
+                        <Frame
+                            x:Name="BackBtnFrame"
+                            Padding="5"
+                            BackgroundColor="Transparent"
+                            CornerRadius="6"
+                            HasShadow="False">
+                            <StackLayout Margin="5,5,8,5" Orientation="Horizontal">
+                                <Label
+                                    x:Name="BackBtnIconLbl"
+                                    FontFamily="{StaticResource FontAwesomeLight}"
+                                    FontSize="28"
+                                    HorizontalOptions="End"
+                                    Text="{x:Static styles:IconFont.ChevronLeftCircle}"
+                                    TextColor="#086c6d"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    x:Name="BackBtnTextLbl"
+                                    HorizontalOptions="End"
+                                    Text="Back"
+                                    TextColor="#444444"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+                    </stateButton:StateButton.Content>
+                </stateButton:StateButton>
+
+                <!--  Next  -->
+                <stateButton:StateButton
+                    x:Name="ContinueButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    AutomationProperties.IsInAccessibleTree="True"
+                    Clicked="ContinueButton_Clicked"
+                    ClickedCommand="{Binding ClickedCommand}"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding HasContinueButton, Source={x:Reference this}}"
+                    PropertyChanged="NextBtn_PropertyChanged">
+                    <stateButton:StateButton.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="20,8,10,15" />
+                            <On Platform="Android" Value="20,6,10,9" />
+                        </OnPlatform>
+                    </stateButton:StateButton.Margin>
+                    <stateButton:StateButton.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsSubmit, Source={x:Reference this}}"
+                            TargetType="stateButton:StateButton"
+                            Value="false">
+                            <Setter Property="AutomationProperties.Name" Value="Next" />
+                        </DataTrigger>
+                        <DataTrigger
+                            Binding="{Binding IsSubmit, Source={x:Reference this}}"
+                            TargetType="stateButton:StateButton"
+                            Value="true">
+                            <Setter Property="AutomationProperties.Name" Value="Submit" />
+                        </DataTrigger>
+                    </stateButton:StateButton.Triggers>
+                    <stateButton:StateButton.Content>
+                        <Border
+                            x:Name="NextBtnFrame"
+                            Padding="5"
+                            BackgroundColor="Transparent">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6"/>
+                            </Border.StrokeShape>
+                            <StackLayout Margin="5,5,8,5" Orientation="Horizontal">
+                                <Label
+                                    x:Name="NextBtnTextLbl"
+                                    HorizontalOptions="End"
+                                    TextColor="{DynamicResource TextPrimaryColour}"
+                                    VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding IsSubmit, Source={x:Reference this}}"
+                                            TargetType="Label"
+                                            Value="false">
+                                            <Setter Property="Text" Value="Next" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            Binding="{Binding IsSubmit, Source={x:Reference this}}"
+                                            TargetType="Label"
+                                            Value="true">
+                                            <Setter Property="Text" Value="Submit" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label
+                                    x:Name="NextBtnIconLbl"
+                                    FontFamily="{StaticResource FontAwesomeLight}"
+                                    FontSize="28"
+                                    HorizontalOptions="End"
+                                    Text="{x:Static styles:IconFont.ChevronRightCircle}"
+                                    TextColor="#086c6d"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Border>
+                    </stateButton:StateButton.Content>
+                </stateButton:StateButton>
+            </Grid>
+        </Border>
+    </ContentView.Content>
+</ContentView>

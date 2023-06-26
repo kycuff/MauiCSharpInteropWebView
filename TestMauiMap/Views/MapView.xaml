@@ -35,7 +35,8 @@
             AutomationProperties.Name="Help"
             HorizontalOptions="Start"
             IsVisible="{Binding ShowMapHelpButton, Source={RelativeSource AncestorType={x:Type ContentView}}}"
-            VerticalOptions="Start">
+            VerticalOptions="Start"
+            Clicked="HelpBtn_Clicked">
             <stateButton:StateButton.Content>
                 <Frame
                     Padding="13,10,14,10"

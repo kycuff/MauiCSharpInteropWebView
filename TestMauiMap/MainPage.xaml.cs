@@ -1,4 +1,5 @@
-﻿using TestMauiMap.Pages;
+﻿using Mopups.Services;
+using TestMauiMap.Pages;
 
 namespace TestMauiMap
 {
@@ -28,6 +29,11 @@ namespace TestMauiMap
         async void MapStatic_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MapStaticPage());
+        }
+
+        private async void HelpBtn_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Help", "This is a test app for the MauiMap library.  It is not intended for production use.", "OK");
         }
     }
 }

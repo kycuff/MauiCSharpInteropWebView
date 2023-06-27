@@ -41,8 +41,9 @@
                 </stateButton:StateButton.Triggers>
 
                 <stateButton:StateButton.Content>
-                    <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
+                    <Grid ColumnDefinitions="auto,auto">
                         <Label
+                            Grid.Column="0"
                             Margin="0,0,3,0"
                             FontSize="16"
                             HorizontalOptions="Start"
@@ -52,10 +53,11 @@
                             VerticalTextAlignment="Center" />
 
                         <Label
+                            Grid.Column="1"
                             HorizontalOptions="Start"
                             Text="Help"
                             TextColor="#086c6d" />
-                    </StackLayout>
+                    </Grid>
 
                 </stateButton:StateButton.Content>
             </stateButton:StateButton>

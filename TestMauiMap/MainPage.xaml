@@ -2,7 +2,8 @@
 <ContentPage
     x:Class="TestMauiMap.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:stateButton="clr-namespace:IeuanWalker.Maui.StateButton;assembly=IeuanWalker.Maui.StateButton">
 
     <ScrollView>
         <VerticalStackLayout
@@ -17,6 +18,49 @@
             <Button Clicked="MapSelected_Clicked" Text="Map (SelectedLocation)" />
 
             <Button Clicked="MapStatic_Clicked" Text="Map (Static)" />
+
+            <stateButton:StateButton
+                x:Name="HelpBtn"
+                Grid.Row="0"
+                Margin="5,6,5,0"
+                Padding="13,10,14,10"
+                AutomationProperties.IsInAccessibleTree="True"
+                AutomationProperties.Name="Help"
+                BackgroundColor="Gray"
+                Clicked="HelpBtn_Clicked"
+                HorizontalOptions="Start"
+                IsVisible="{Binding ShowMapHelpButton, Source={RelativeSource AncestorType={x:Type ContentView}}}"
+                VerticalOptions="Start">
+                <stateButton:StateButton.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </stateButton:StateButton.StrokeShape>
+                <stateButton:StateButton.Triggers>
+                    <Trigger TargetType="stateButton:StateButton" Property="State" Value="Pressed">
+                        <Setter Property="BackgroundColor" Value="Red" />
+                    </Trigger>
+                </stateButton:StateButton.Triggers>
+
+                <stateButton:StateButton.Content>
+                    <Grid ColumnDefinitions="auto,auto">
+                        <Label
+                            Grid.Column="0"
+                            Margin="0,0,3,0"
+                            FontSize="16"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            Text="?"
+                            TextColor="#086c6d"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="Start"
+                            Text="Help"
+                            TextColor="#086c6d" />
+                    </Grid>
+
+                </stateButton:StateButton.Content>
+            </stateButton:StateButton>
 
         </VerticalStackLayout>
     </ScrollView>

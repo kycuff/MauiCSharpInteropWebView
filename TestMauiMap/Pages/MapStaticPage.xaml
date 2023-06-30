@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:custom="clr-namespace:TestMauiMap.Controls.Custom"
-             x:Class="TestMauiMap.Pages.MapStaticPage"
-             Title="MapStaticPage">
-    <FlexLayout Direction="Column" VerticalOptions="FillAndExpand">
+<ContentPage
+    x:Class="TestMauiMap.Pages.MapStaticPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:custom="clr-namespace:TestMauiMap.Views"
+    Title="MapStaticPage">
 
-        <custom:MapImage    Easting="318856"
-                            Northing="175262"
-                            Zoom="200" />
-    </FlexLayout>
+    <ContentPage.Content>
+        <Grid
+            Margin="0"
+            Padding="0"
+            BackgroundColor="White"
+            RowDefinitions="*,auto"
+            RowSpacing="0">
+
+            <custom:MapView DefaultEasting="318856.31"
+                        DefaultNorthing="175262.55"
+                        DefaultZoom="200"
+                        Layers="greenbagstockists"
+                        MapMode="Static" />
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
